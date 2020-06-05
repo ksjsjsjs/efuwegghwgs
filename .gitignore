@@ -1,41 +1,738 @@
-# Compiled Lua sources
-luac.out
+AWES = [[
 
-# luarocks build files
-*.src.rock
-*.zip
-*.tar.gz
 
-# Object files
-*.o
-*.os
-*.ko
-*.obj
-*.elf
+                🛡 Critical Lord Encrypt V2 🛡
 
-# Precompiled Headers
-*.gch
-*.pch
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-*.def
-*.exp
+                [• This Encrypt Is Full Version •]
+                      [• Credit: @CriticalLord•]
+                [• Thanks For Use My Encrypt •]
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+]]
+local HEADERNYA = 'GAPAKE'
+local g = {}
+g.last = gg.getFile()
+g.info = nil
+g.config = gg.EXT_CACHE_DIR .. "/" .. gg.getFile():match("[^/]+$") .. "cfg"
+g.data = loadfile(g.config)
+if g.data ~= nil then g.info = g.data() g.data = nil end
+if g.info == nil then g.info = {g.last, g.last:gsub("/[^/]+$", "")} end
+DuarMmx = gg.alert(os.date([[🛡 Critical Lord Encrypt V2 🛡
+🗓️ Date : %A, %B %Y
 
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
+==================
+📌 Feautures :
+ - Block SSTool
+ - Block Unluac
+ - Block Compiler
+==================]]), "START ↗️", "↙️ EXIT")
+if DuarMmx == nil then end
+if DuarMmx == 1 then end
+if DuarMmx == 2 then print([[==================
+🛡 Critical Lord Encrypt V2 🛡
+==================]]) return os.exit() end
+while true do
+g.info = gg.prompt({
+"📁 Choose Script to Encrypt : ",
+"📁 Select Output Folder: ",
+"🕒 Add Expirity Date"},
+g.info,
+{"file",
+"path",
+"checkbox"})
+if g.info == nil then
+return
+end
+gg.saveVariable(g.info, g.config)
+g.last = g.info[1]
+if loadfile(g.last) == nil then
+return gg.alert([[⚠️Script not Found! ⚠️]])
+else
+g.out = g.last:match("[^/]+$")
+g.out = g.out:gsub(".lua", ".Lord")
+g.out = g.info[2] .. "/" .. g.out .. ".lua"
+print([[🛡 Critical Lord Encrypt V2 🛡]])
+print("\n\n☑️ Succes Encrypted!")
+print("📁 File Saved in: ".. g.out.."\n")
+info = {g.out}
+end
+local DATA = io.input(g.last):read('*a')
+if g.info[3] == true then
+day = os.date("%d")
+exp_date = gg.prompt({
+"📆 Set Expiry Date",
+"📝 Type Expired Message"},
+{
+os.date("%Y%m" .. day + 7),
+"⚠️ Script Expired ⚠️️"},
+{"number", "text"})
+end
+if not exp_date then
+gg.setVisible(true)
+elseif exp_date[1] == nil then gg.alert("📆 Date Can Not Be Empty !") gg.setVisible(true)
+else
+print("📅 Expired Date: ".. exp_date[1])
+DATA = '\
+if os.date("%Y%m%d") >= ' .. encvalues(exp_date[1]) .. ' then gg.alert(' .. encvalues(exp_date[2]) .. ') end\n' .. DATA
+end
+if g.info[4] == true then
+PASS = gg["prompt"]({
+"🔐 Set Password For Script:",
+"📝 Type Message For Wrong Password"
+}, {
+"",
+"⚠️ Wrong Password ⚠️"
+}, {
+"text",
+"text"
+})
+end
+if not PASS then
+gg.setVisible(true)
+elseif PASS[1] == nil then
+gg.alert("⚠️ Input Password !")
+gg.setVisible(true)
+else
+print("🔐 Password: ".. PASS[1])
+DATA = 'PASSW = gg.prompt({\'🔒 Input password: \'},{[1]=\'\'},{[1]=\'text\'})\
+if not PASSW the﻿n return\
+end \
+if PASSW[1] == "" then gg.alert("Password Can Not Be Empty ❕") end\
+if PASSW[1] ==' .. encvalues(PASS[1]) .. ' then\
+gg.toast(\'✔️ Password correct❕\')\
+else\
+return gg.alert(' .. encvalues(PASS[2]) .. ') end\n' .. DATA
+end
+if g.info[5] == true then
+VERSION = gg.prompt({"🔐 Set Minimal GG Version",
+"🗒️ Error GG Message"
+}, {
+gg.VERSION,
+"⚠️ Error GG VERSION ⚠️"
+}, {
+"number",
+"text"
+})
+end
+if not VERSION then
+gg.setVisible(true)
+elseif VERSION[1] == nil then
+gg.alert("🛡️ Input Minimal Required GG Version !")
+gg.setVisible(true)
+else
+print("🛡️ Minimal Version Required: "..VERSION[1])
+DATA = '\
+if gg.VERSION < '.. encvalues(VERSION[1]) .. ' then gg.alert(' .. encvalues(VERSION[2]) .. ') end\n' .. DATA
+end
+if g.info[6] == true then
+NAME = gg.prompt({
+"🗒️ Set Name For Script:",
+"📝 Type Message For Name Changed",
+}, {
+g.out:match("[^/]+$"),
+"⚠️ RENAME DETECTED ⚠️"}, {
+"text",
+"text"
+})
+end
+if not NAME then
+gg.setVisible(true)
+elseif NAME[1] == nil then
+gg.alert("📝 Set Name Can Not Be Empty !")
+gg.setVisible(true)
+else
+print("📝 Added Rename Blocker")
+DATA = '\
+NAME = gg.getFile()\
+NAME = NAME:match("[^/]+$")\
+if NAME == ' .. encvalues(NAME[1]) .. ' then else gg.copyText('.. encvalues(NAME[1]) ..') return gg.alert(' .. encvalues(NAME[2]) .. ') end\n' .. DATA
+end
+if g.info[7] == true then
+HEADERCST = gg.prompt({
+"🍎 Type Custom Header (LuaxXx)",
+}, {
+"BydzNS",
+}, {
+"text",
+})
+Head45 = HEADERCST[1]
+local HEADERNYA = 'PAKE'
+else
+Head45 = "BydzNS"
+end
+if not HEADERCST then
+gg.setVisible(true)
+elseif HEADERCST[1] == nil then
+print("🍓 Lua Header: LuaBydzNS")
+return
+else
+print("🍓 Lua Header: Lua".. HEADERCST[1])
+end
+local CstHdr = Head45
+if not load(DATA) then
+print("⚠️ ERROR\n\nFile Can Not Be Encrypted !")
+break 
+else
+local GTBL = {}
+local TBNUB = {}
+function TB(str)
+sd = {}
+gb = {str:byte(1,-1)}
+res = ''
+LESS = '\\000'
+for i = 1, #gb do
+gb[i] = (gb[i] + TBNUB[1] - TBNUB[2] * TBNUB[3] * TBNUB[4] - TBNUB[5] * TBNUB[6] - TBNUB[7] * TBNUB[8] - TBNUB[9] + TBNUB[10] * i) % 256
+res = LESS:rep(gb[i])
+table.insert(sd, '"'..res..'"')
+end
+return "{"..table.concat(sd, ",").."}"
+end
+eek = 1
+for i = 1, 10 do
+gay = math.random(1, 93)
+table.insert(TBNUB, gay)
+end
+function JomKey()
+sd = {}
+res = ''
+LESS = '\\000'
+for i = 1, #TBNUB do
+res = LESS:rep(TBNUB[i])
+table.insert(sd, '"'..res..'"')
+end
+kyyyy = "{"..table.concat(sd, ",").."}"
+table.insert(GTBL, kyyyy)
+end
+JomKey()
+local DATA = [[
+if _A ~= "\n\n                 🛡 Critical Lord Encrypt V2 🛡\n\n\n                [• This Encrypt Is Full Version •]\n                      [• Credit: @CriticalLord•]\n                [• Thanks For Use My Encrypt •]\n\n" then return end
+gg.setVisible(false)
+gg.sleep(300)
+gg.setVisible(false)
+print("🛡 Critical Lord Encrypt V2 🛡")
+for i in ipairs({}) do local GetProtectValues = {} if not GetProtectValues then else GetProtectValues = Plugin local Via_SSTools = {} Via_SSTools.GetError.Crash = Via_SSTools.GetError.Crash() if Via_SSTools.GetError.Crash ~= Via_SSTools.GetError.Crash then Via_SSTools.GetError.Crash = Via_SSTools.GetError.Crash() local Via_SSTools = {} Via_SSTools.setRanges = Via_SSTools.setRanges() if Via_SSTools.setRanges ~= Via_SSTools.setRanges then Via_SSTools.setRanges = Via_SSTools.setRanges() Via_SSTools.searchNumber = Via_SSTools.searchNumber() if Via_SSTools.searchNumber ~= Via_SSTools.searchNumber then Via_SSTools.searchNumber = Via_SSTools.searchNumber() Via_SSTools.editAll = Via_SSTools.editAll() if Via_SSTools.editAll ~= Via_SSTools.editAll then Via_SSTools.editAll = Via_SSTools.editAll() Via_SSTools.clearResults = Via_SSTools.clearResults() if Via_SSTools.clearResults ~= Via_SSTools.clearResults then Via_SSTools.clearResults = Via_SSTools.clearResults() end;end;end;end;end;end;end
+local function loader(str) local i = "";repeat i = i.. string.char(math.random(97,122)) until #i > 10;package.path = "?";local ii = (gg.EXT_STORAGE).."/"..i;io.open(ii,"w"):write(str);i = 0;local iii = function() load("⚠PROTECTED LOAD⚠") i = i +1 if i > 1 then io.open(ii,"w"):write(str) os.remove(ii) debug.sethook(iii,"") end end;debug.sethook(iii,"cr");local iiii = pcall(require,ii) return end
+while(nil)do;local i={}if(i.i)then;i.i=(i.i(i))end;end
+while(nil)do;i = {nil % nil};for i in ipairs(i) do i = {{nil % nil}, {nil % nil}} i.i = _ENV[{(nil % nil)}] end;end
+while(nil)do;for i=i,i do;local i={}if(i.i)then;i.i=i.i(i)end;for ii=i.i,i.i,i.i do;local ii={}if(ii.i)then;ii.i=ii.i()end;for iii=i,ii.i,i do;local iii={}if(iii.i)then;iii.i=iii.i(i)end;for iiii=i,ii,iii.i do;local iiii={}if(iiii.i)then;iiii.i=iiii.i(i)end;local iiii={}if(iiii.i)then;iiii.i=(iiii|iii|ii|i)(i)end;end;local iii={}if(iii.i)then;iii.i=(true|iii|ii|i)(i)end;end;local ii={}if(ii.i)then;ii.i=(true|false|ii|i)(i)end;end;local i={}if(i.i)then;i.i=(true|false|nil|i)(i)end;return(true|false|nil)end;return;end
+while(nil)do;if ({~nil, -nil % nil })[-{ ~nil, -nil % nil }] ~= #{ ~nil, -nil % nil } & ~{ ~nil, -nil % nil } ~= nil then Nil = ({})((-nil)) local x = {} x[-{~nil, -nil % nil}] = x local t = (x)(x, x) t[-{~nil, -nil % nil}] = ({~nil , -nil % nil}) end;end
+for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;
+local function loader(str) local i = "";repeat i = i.. string.char(math.random(97,122)) until #i > 10;package.path = "?";local ii = (gg.EXT_STORAGE).."/"..i;io.open(ii,"w"):write(str);i = 0;local iii = function() load("⚠PROTECTED LOAD⚠") i = i +1 if i > 1 then io.open(ii,"w"):write(str) os.remove(ii) debug.sethook(iii,"") end end;debug.sethook(iii,"cr");local iiii = pcall(require,ii) return end
+while(nil)do;local i={}if(i.i)then;i.i=(i.i(i))end;end
+while(nil)do;i = {nil % nil};for i in ipairs(i) do i = {{nil % nil}, {nil % nil}} i.i = _ENV[{(nil % nil)}] end;end
+while(nil)do;for i=i,i do;local i={}if(i.i)then;i.i=i.i(i)end;for ii=i.i,i.i,i.i do;local ii={}if(ii.i)then;ii.i=ii.i()end;for iii=i,ii.i,i do;local iii={}if(iii.i)then;iii.i=iii.i(i)end;for iiii=i,ii,iii.i do;local iiii={}if(iiii.i)then;iiii.i=iiii.i(i)end;local iiii={}if(iiii.i)then;iiii.i=(iiii|iii|ii|i)(i)end;end;local iii={}if(iii.i)then;iii.i=(true|iii|ii|i)(i)end;end;local ii={}if(ii.i)then;ii.i=(true|false|ii|i)(i)end;end;local i={}if(i.i)then;i.i=(true|false|nil|i)(i)end;return(true|false|nil)end;return;end
+while(nil)do;if ({~nil, -nil % nil })[-{ ~nil, -nil % nil }] ~= #{ ~nil, -nil % nil } & ~{ ~nil, -nil % nil } ~= nil then Nil = ({})((-nil)) local x = {} x[-{~nil, -nil % nil}] = x local t = (x)(x, x) t[-{~nil, -nil % nil}] = ({~nil , -nil % nil}) end;end
+for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;
+local function loader(str) local i = "";repeat i = i.. string.char(math.random(97,122)) until #i > 10;package.path = "?";local ii = (gg.EXT_STORAGE).."/"..i;io.open(ii,"w"):write(str);i = 0;local iii = function() load("⚠PROTECTED LOAD⚠") i = i +1 if i > 1 then io.open(ii,"w"):write(str) os.remove(ii) debug.sethook(iii,"") end end;debug.sethook(iii,"cr");local iiii = pcall(require,ii) return end
+while(nil)do;local i={}if(i.i)then;i.i=(i.i(i))end;end
+while(nil)do;i = {nil % nil};for i in ipairs(i) do i = {{nil % nil}, {nil % nil}} i.i = _ENV[{(nil % nil)}] end;end
+while(nil)do;for i=i,i do;local i={}if(i.i)then;i.i=i.i(i)end;for ii=i.i,i.i,i.i do;local ii={}if(ii.i)then;ii.i=ii.i()end;for iii=i,ii.i,i do;local iii={}if(iii.i)then;iii.i=iii.i(i)end;for iiii=i,ii,iii.i do;local iiii={}if(iiii.i)then;iiii.i=iiii.i(i)end;local iiii={}if(iiii.i)then;iiii.i=(iiii|iii|ii|i)(i)end;end;local iii={}if(iii.i)then;iii.i=(true|iii|ii|i)(i)end;end;local ii={}if(ii.i)then;ii.i=(true|false|ii|i)(i)end;end;local i={}if(i.i)then;i.i=(true|false|nil|i)(i)end;return(true|false|nil)end;return;end
+while(nil)do;if ({~nil, -nil % nil })[-{ ~nil, -nil % nil }] ~= #{ ~nil, -nil % nil } & ~{ ~nil, -nil % nil } ~= nil then Nil = ({})((-nil)) local x = {} x[-{~nil, -nil % nil}] = x local t = (x)(x, x) t[-{~nil, -nil % nil}] = ({~nil , -nil % nil}) end;end
+for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;
+local function loader(str) local i = "";repeat i = i.. string.char(math.random(97,122)) until #i > 10;package.path = "?";local ii = (gg.EXT_STORAGE).."/"..i;io.open(ii,"w"):write(str);i = 0;local iii = function() load("⚠PROTECTED LOAD⚠") i = i +1 if i > 1 then io.open(ii,"w"):write(str) os.remove(ii) debug.sethook(iii,"") end end;debug.sethook(iii,"cr");local iiii = pcall(require,ii) return end
+while(nil)do;local i={}if(i.i)then;i.i=(i.i(i))end;end
+while(nil)do;i = {nil % nil};for i in ipairs(i) do i = {{nil % nil}, {nil % nil}} i.i = _ENV[{(nil % nil)}] end;end
+while(nil)do;for i=i,i do;local i={}if(i.i)then;i.i=i.i(i)end;for ii=i.i,i.i,i.i do;local ii={}if(ii.i)then;ii.i=ii.i()end;for iii=i,ii.i,i do;local iii={}if(iii.i)then;iii.i=iii.i(i)end;for iiii=i,ii,iii.i do;local iiii={}if(iiii.i)then;iiii.i=iiii.i(i)end;local iiii={}if(iiii.i)then;iiii.i=(iiii|iii|ii|i)(i)end;end;local iii={}if(iii.i)then;iii.i=(true|iii|ii|i)(i)end;end;local ii={}if(ii.i)then;ii.i=(true|false|ii|i)(i)end;end;local i={}if(i.i)then;i.i=(true|false|nil|i)(i)end;return(true|false|nil)end;return;end
+while(nil)do;if ({~nil, -nil % nil })[-{ ~nil, -nil % nil }] ~= #{ ~nil, -nil % nil } & ~{ ~nil, -nil % nil } ~= nil then Nil = ({})((-nil)) local x = {} x[-{~nil, -nil % nil}] = x local t = (x)(x, x) t[-{~nil, -nil % nil}] = ({~nil , -nil % nil}) end;end
+for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;
+LordC4 = string.char(math.random(97, 122))
+LordC3 = string.char(math.random(65, 90))
+LordC2 = string.char(math.random(97, 122))
+LordC1 = string.char(math.random(65, 90))
+LordC = "i"..LordC4.."ii"..LordC2.."iii"..LordC1.."iiii"..LordC3.."iiii"..LordC2.."iiiii"..LordC3.."iiiiii"..LordC1.."iiiiiii"..LordC4.."iiiiiiii"..LordC2.."ili"..LordC1.."iiiili"..LordC2.."iiil"..LordC1.."liiiii"..LordC3.."ilIiii"..LordC2.."iiiii"..LordC4.."iiililiiii"..LordC1.."iiilliiii"..LordC1.."liiliiiiiii"..LordC2..""
+function anti_lasm()
+HE = math.random(500,999)
+for i=1,HE do
+x= math.random(LordC)
+for i=1,899 do
+y= math.random(LordC)
+x=x..y
+end
+z='"'..x..'"'
+anti=z..uselescode..z
+funnum=math.random(10000,100000)
+fundump="function "..fundnum.."()".."\n"..anti.."\n".."end"
+lasming=string.dump(fundump)
+load(lasming)
+end
+end
+while (nil)do;local o={o.uo,p.p,fq.qo.o,p.p,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={o.o,p.p,q.qoyo.uo,p.p,q.qo.o,p.p,q.q.o,p.sp,q.q} local q={o.o,p.p,q.qo.uo,p.pp,q.qo.o,p.p,q.qo.o,p.p,q.qi}local o={o.uo,p.p,q.qo.o,p.rp,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={o.o,p.p,qw.qoo.uo,p.p,q.qo.o,p.p,q.q.o,p.sp,q.q} local q={o.o,p.p,q.qo.uo,p.p,q.qbo.o,p.p,q.qo.o,p.p,q.qi}if (o.o)then if (o.o.o)then if (o.o.o.o) then if (o.o.o.o.o) then if (p.p) then if (p.p.p) then if (p.p.p.p) then if (q.q) then if (q.q.q) then if (q.q.q.q) then;o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q))))))o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q)))))) local r={o.o,p.p,q.qo.o,p.p,q.q} r.r=r[1]..r[2]..r[3] r.i= r.r(r.r(r.r(r.r(r.r(r.r(r.r)))))) end;end;end;end;end;end;end;end;end;end;end
+if(nil)then if true then return end if true then return end if true then return end if true then return end if true then return end if true then return end if true then return end if true then return end end
+while (nil)do;local o={o.uo,p.p,fq.qo.o,p.p,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={o.o,p.p,q.qoyo.uo,p.p,q.qo.o,p.p,q.q.o,p.sp,q.q} local q={o.o,p.p,q.qo.uo,p.pp,q.qo.o,p.p,q.qo.o,p.p,q.qi}local o={o.uo,p.p,q.qo.o,p.rp,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={o.o,p.p,qw.qoo.uo,p.p,q.qo.o,p.p,q.q.o,p.sp,q.q} local q={o.o,p.p,q.qo.uo,p.p,q.qbo.o,p.p,q.qo.o,p.p,q.qi}if (o.o)then if (o.o.o)then if (o.o.o.o) then if (o.o.o.o.o) then if (p.p) then if (p.p.p) then if (p.p.p.p) then if (q.q) then if (q.q.q) then if (q.q.q.q) then;o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q))))))o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q)))))) local r={o.o,p.p,q.qo.o,p.p,q.q} r.r=r[1]..r[2]..r[3] r.i= r.r(r.r(r.r(r.r(r.r(r.r(r.r)))))) end;end;end;end;end;end;end;end;end;end;end
+if(nil)then if true then return end if true then return end if true then return end if true then return end if true then return end if true then return end if true then return end if true then return end end
+while (nil)do;local o={o.uo,p.p,fq.qo.o,p.p,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={o.o,p.p,q.qoyo.uo,p.p,q.qo.o,p.p,q.q.o,p.sp,q.q} local q={o.o,p.p,q.qo.uo,p.pp,q.qo.o,p.p,q.qo.o,p.p,q.qi}local o={o.uo,p.p,q.qo.o,p.rp,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={o.o,p.p,qw.qoo.uo,p.p,q.qo.o,p.p,q.q.o,p.sp,q.q} local q={o.o,p.p,q.qo.uo,p.p,q.qbo.o,p.p,q.qo.o,p.p,q.qi}if (o.o)then if (o.o.o)then if (o.o.o.o) then if (o.o.o.o.o) then if (p.p) then if (p.p.p) then if (p.p.p.p) then if (q.q) then if (q.q.q) then if (q.q.q.q) then;o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q))))))o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q)))))) local r={o.o,p.p,q.qo.o,p.p,q.q} r.r=r[1]..r[2]..r[3] r.i= r.r(r.r(r.r(r.r(r.r(r.r(r.r)))))) end;end;end;end;end;end;end;end;end;end;end
+if(nil)then if true then return end if true then return end if true then return end if true then return end if true then return end if true then return end if true then return end if true then return end end
+while (nil)do;local o={o.uo,p.p,fq.qo.o,p.p,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={o.o,p.p,q.qoyo.uo,p.p,q.qo.o,p.p,q.q.o,p.sp,q.q} local q={o.o,p.p,q.qo.uo,p.pp,q.qo.o,p.p,q.qo.o,p.p,q.qi}local o={o.uo,p.p,q.qo.o,p.rp,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={o.o,p.p,qw.qoo.uo,p.p,q.qo.o,p.p,q.q.o,p.sp,q.q} local q={o.o,p.p,q.qo.uo,p.p,q.qbo.o,p.p,q.qo.o,p.p,q.qi}if (o.o)then if (o.o.o)then if (o.o.o.o) then if (o.o.o.o.o) then if (p.p) then if (p.p.p) then if (p.p.p.p) then if (q.q) then if (q.q.q) then if (q.q.q.q) then;o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q))))))o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q)))))) local r={o.o,p.p,q.qo.o,p.p,q.q} r.r=r[1]..r[2]..r[3] r.i= r.r(r.r(r.r(r.r(r.r(r.r(r.r)))))) end;end;end;end;end;end;end;end;end;end;end
+if(nil)then if true then return end if true then return end if true then return end if true then return end if true then return end if true then return end if true then return end if true then return end end
+while (nil)do;local o={{-nil,{nil%- nil,{-nil%nil,{nil%nil%- nil,{""..GTR..""}},{GTR},}},{{"\n\n"},o.uo,{{"\n"},p.p,{{"\n\n\n"},fq.qo.o,{{"\t\n\n\t\n"},p.p,{{"\t\n"},q.q{o}.uo,{{"\n\n\t\t\n\n"},p.p,{{"\n\n\t\n\t\n\n\t\n"},q.qo.o,{{"\n\t\n\n\t\n"},p.p,{{"\n\n\t\n"},q.q}}}}}}}}}}} local p={o.o,{{"\n"},S,n,i,p,e,r,G,a,m,e,r,T,M,p,{{"\n"},p.p,q.qo.o,{p.p,{q.q.o,{p.s{"\n\n"},p,{q.q}}}}}}} local q={o.o,p.p,q.qo.uo,p.pp,q.qo.o,p.p,q.qo.o,p.p,q.qi}local o={o.uo,p.p,q.qo.o,p.rp,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={S,n,i,p,e,r,G,a,m,e,r,T,M} local q={o.o,p.p,q.qo.uo,p.p,q,qi,p.p,q.qo.o,p.p,q.qi}if (o.o)then if (o.o.o)then if (o.o.o.o) then if (o.o.o.o.o) then if (p.p) then if (p.p.p) then if (p.p.p.p) then if (q.q) then if (q.q.q) then if (q.q.q.q) then;o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q))))))o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q)))))) local r={o.o,p.p,q.qo.o,p.p,q.q} r.r=r[1]..r[2]..r[3] r.i= r.r(r.r(r.r(r.r(r.r(r.r(r.r)))))) end;end;end;end;end;end;end;end;end;end;end
+while (nil)do;local o={{-nil,{nil%- nil,{-nil%nil,{nil%nil%- nil,{""..GTR..""}},{GTR},}},{{"\n\n"},o.uo,{{"\n"},p.p,{{"\n\n\n"},fq.qo.o,{{"\t\n\n\t\n"},p.p,{{"\t\n"},q.q{o}.uo,{{"\n\n\t\t\n\n"},p.p,{{"\n\n\t\n\t\n\n\t\n"},q.qo.o,{{"\n\t\n\n\t\n"},p.p,{{"\n\n\t\n"},q.q}}}}}}}}}}} local p={o.o,{{"\n"},S,n,i,p,e,r,G,a,m,e,r,T,M,p,{{"\n"},p.p,q.qo.o,{p.p,{q.q.o,{p.s{"\n\n"},p,{q.q}}}}}}} local q={o.o,p.p,q.qo.uo,p.pp,q.qo.o,p.p,q.qo.o,p.p,q.qi}local o={o.uo,p.p,q.qo.o,p.rp,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={S,n,i,p,e,r,G,a,m,e,r,T,M} local q={o.o,p.p,q.qo.uo,p.p,q,qi,p.p,q.qo.o,p.p,q.qi}if (o.o)then if (o.o.o)then if (o.o.o.o) then if (o.o.o.o.o) then if (p.p) then if (p.p.p) then if (p.p.p.p) then if (q.q) then if (q.q.q) then if (q.q.q.q) then;o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q))))))o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q)))))) local r={o.o,p.p,q.qo.o,p.p,q.q} r.r=r[1]..r[2]..r[3] r.i= r.r(r.r(r.r(r.r(r.r(r.r(r.r)))))) end;end;end;end;end;end;end;end;end;end;end
+while (nil)do;local o={{-nil,{nil%- nil,{-nil%nil,{nil%nil%- nil,{""..GTR..""}},{GTR},}},{{"\n\n"},o.uo,{{"\n"},p.p,{{"\n\n\n"},fq.qo.o,{{"\t\n\n\t\n"},p.p,{{"\t\n"},q.q{o}.uo,{{"\n\n\t\t\n\n"},p.p,{{"\n\n\t\n\t\n\n\t\n"},q.qo.o,{{"\n\t\n\n\t\n"},p.p,{{"\n\n\t\n"},q.q}}}}}}}}}}} local p={o.o,{{"\n"},S,n,i,p,e,r,G,a,m,e,r,T,M,p,{{"\n"},p.p,q.qo.o,{p.p,{q.q.o,{p.s{"\n\n"},p,{q.q}}}}}}} local q={o.o,p.p,q.qo.uo,p.pp,q.qo.o,p.p,q.qo.o,p.p,q.qi}local o={o.uo,p.p,q.qo.o,p.rp,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={S,n,i,p,e,r,G,a,m,e,r,T,M} local q={o.o,p.p,q.qo.uo,p.p,q,qi,p.p,q.qo.o,p.p,q.qi}if (o.o)then if (o.o.o)then if (o.o.o.o) then if (o.o.o.o.o) then if (p.p) then if (p.p.p) then if (p.p.p.p) then if (q.q) then if (q.q.q) then if (q.q.q.q) then;o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q))))))o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q)))))) local r={o.o,p.p,q.qo.o,p.p,q.q} r.r=r[1]..r[2]..r[3] r.i= r.r(r.r(r.r(r.r(r.r(r.r(r.r)))))) end;end;end;end;end;end;end;end;end;end;end
+while (nil)do;local o={{-nil,{nil%- nil,{-nil%nil,{nil%nil%- nil,{""..GTR..""}},{GTR},}},{{"\n\n"},o.uo,{{"\n"},p.p,{{"\n\n\n"},fq.qo.o,{{"\t\n\n\t\n"},p.p,{{"\t\n"},q.q{o}.uo,{{"\n\n\t\t\n\n"},p.p,{{"\n\n\t\n\t\n\n\t\n"},q.qo.o,{{"\n\t\n\n\t\n"},p.p,{{"\n\n\t\n"},q.q}}}}}}}}}}} local p={o.o,{{"\n"},S,n,i,p,e,r,G,a,m,e,r,T,M,p,{{"\n"},p.p,q.qo.o,{p.p,{q.q.o,{p.s{"\n\n"},p,{q.q}}}}}}} local q={o.o,p.p,q.qo.uo,p.pp,q.qo.o,p.p,q.qo.o,p.p,q.qi}local o={o.uo,p.p,q.qo.o,p.rp,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={S,n,i,p,e,r,G,a,m,e,r,T,M} local q={o.o,p.p,q.qo.uo,p.p,q,qi,p.p,q.qo.o,p.p,q.qi}if (o.o)then if (o.o.o)then if (o.o.o.o) then if (o.o.o.o.o) then if (p.p) then if (p.p.p) then if (p.p.p.p) then if (q.q) then if (q.q.q) then if (q.q.q.q) then;o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q))))))o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q)))))) local r={o.o,p.p,q.qo.o,p.p,q.q} r.r=r[1]..r[2]..r[3] r.i= r.r(r.r(r.r(r.r(r.r(r.r(r.r)))))) end;end;end;end;end;end;end;end;end;end;end
+for i = 1, 0 do
+local XT = {}
+if XT ~= XT then
+XT.ASQWS = XT.bASQWS()
+end
+XT = nil
+end
+  save = {}
+  for _FORV_27_ = 1, 10000 do
+    table.insert(save, {
+      ["address"] = 0 + _FORV_27_,
+      ["flags"] = 12
+    })
+  end
+  time = _G["os"]["clock"]()
+  for _FORV_27_ = 1, 5 do
+    _G["gg"]["addListItems"](save)
+  end
+  if 2 <= _G["os"]["clock"]() - time then
+    _G["gg"]["removeListItems"](save)
+    i = 1
+    gg.alert("🛡 Critical Lord Encrypt V2 🛡", "")
+    gg.setVisible(false)
+    while true do
+      i = i + 1
+      gg.toast("🛡 Critical Lord Encrypt V2 🛡")
+      file = io.open("/storage/emulated/0/" .. i, "w")
+      file:write("🛡 Critical Lord Encrypt V2 🛡")
+      file:close()
+      gg.setVisible(false)
+      gg.processKill()
+      gg.setVisible(true)
+    end
+    print("🛡 Critical Lord Encrypt V2 🛡")
+    return
+  end
+  _G["gg"]["removeListItems"](save)
+local _  =  debug.getinfo(gg.searchNumber).source ~= "=[Java]" or  not not debug.getupvalue(gg.searchNumber,1,2) 
+local _ = _  == false or (function() gg.alert("🔥DETECTED HOOK🔥","","","")
+os.exit()
+ end)()
+ local hook = gg.searchNumber
+local hook2  = gg.editAll
 
+gg.editAll = function(...) 
+parm = {...}
+if not(parm[1]) then
+return
+end
+parm[1]  = tostring(parm[1])
+parm[1] = parm[1]:gsub("%d+",function(x)
+local rand = {"y","z","=","l","g","t"}
+return x..(rand[math.random(1,#rand)]):rep(500)..(rand[math.random(1,#rand)]):rep(500)
+end)
+hook2(table.unpack(parm))
+end
+
+gg.searchNumber = function(...) 
+parm = {...}
+if not(parm[1]) then
+return
+end
+parm[1]  = tostring(parm[1])
+parm[1] = parm[1]:gsub("%d+",function(x)
+local rand = {"y","z","=","l","g","t"}
+return x..(rand[math.random(1,#rand)]):rep(500)..(rand[math.random(1,#rand)]):rep(500)
+end)
+hook(table.unpack(parm))
+end
+gg.toast("🛡 Critical Lord Encrypt V2 🛡")
+gg.sleep(300)
+io.input(gg.getFile())
+os.remove(gg.getFile())
+gg.setVisible(false)
+if not loadfile(gg.getFile()) then io.output(gg.getFile()) io.write(io.read("*a"), "w") return end
+io.output(gg.getFile())
+io.write(io.read("*a"), "w")
+os.rename(gg.getFile(), "/storage/emulated/0/#")
+os.rename("/storage/emulated/0/#", "/storage/emulated/0/Android/###")
+if not loadfile(gg.getFile()) then os.rename("/storage/emulated/0/Android/###", gg.getFile()) return end
+os.rename("/storage/emulated/0/Android/###", gg.getFile())
+
+]]..DATA..[[
+gg.setVisible(false)
+for i in ipairs({}) do local GetProtectValues = {} if not GetProtectValues then else GetProtectValues = Plugin local Via_SSTools = {} Via_SSTools.GetError.Crash = Via_SSTools.GetError.Crash() if Via_SSTools.GetError.Crash ~= Via_SSTools.GetError.Crash then Via_SSTools.GetError.Crash = Via_SSTools.GetError.Crash() local Via_SSTools = {} Via_SSTools.setRanges = Via_SSTools.setRanges() if Via_SSTools.setRanges ~= Via_SSTools.setRanges then Via_SSTools.setRanges = Via_SSTools.setRanges() Via_SSTools.searchNumber = Via_SSTools.searchNumber() if Via_SSTools.searchNumber ~= Via_SSTools.searchNumber then Via_SSTools.searchNumber = Via_SSTools.searchNumber() Via_SSTools.editAll = Via_SSTools.editAll() if Via_SSTools.editAll ~= Via_SSTools.editAll then Via_SSTools.editAll = Via_SSTools.editAll() Via_SSTools.clearResults = Via_SSTools.clearResults() if Via_SSTools.clearResults ~= Via_SSTools.clearResults then Via_SSTools.clearResults = Via_SSTools.clearResults() end;end;end;end;end;end;end
+local function loader(str) local i = "";repeat i = i.. string.char(math.random(97,122)) until #i > 10;package.path = "?";local ii = (gg.EXT_STORAGE).."/"..i;io.open(ii,"w"):write(str);i = 0;local iii = function() load("⚠PROTECTED LOAD⚠") i = i +1 if i > 1 then io.open(ii,"w"):write(str) os.remove(ii) debug.sethook(iii,"") end end;debug.sethook(iii,"cr");local iiii = pcall(require,ii) return end
+while(nil)do;local i={}if(i.i)then;i.i=(i.i(i))end;end
+while(nil)do;i = {nil % nil};for i in ipairs(i) do i = {{nil % nil}, {nil % nil}} i.i = _ENV[{(nil % nil)}] end;end
+while(nil)do;for i=i,i do;local i={}if(i.i)then;i.i=i.i(i)end;for ii=i.i,i.i,i.i do;local ii={}if(ii.i)then;ii.i=ii.i()end;for iii=i,ii.i,i do;local iii={}if(iii.i)then;iii.i=iii.i(i)end;for iiii=i,ii,iii.i do;local iiii={}if(iiii.i)then;iiii.i=iiii.i(i)end;local iiii={}if(iiii.i)then;iiii.i=(iiii|iii|ii|i)(i)end;end;local iii={}if(iii.i)then;iii.i=(true|iii|ii|i)(i)end;end;local ii={}if(ii.i)then;ii.i=(true|false|ii|i)(i)end;end;local i={}if(i.i)then;i.i=(true|false|nil|i)(i)end;return(true|false|nil)end;return;end
+while(nil)do;if ({~nil, -nil % nil })[-{ ~nil, -nil % nil }] ~= #{ ~nil, -nil % nil } & ~{ ~nil, -nil % nil } ~= nil then Nil = ({})((-nil)) local x = {} x[-{~nil, -nil % nil}] = x local t = (x)(x, x) t[-{~nil, -nil % nil}] = ({~nil , -nil % nil}) end;end
+for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;
+local function loader(str) local i = "";repeat i = i.. string.char(math.random(97,122)) until #i > 10;package.path = "?";local ii = (gg.EXT_STORAGE).."/"..i;io.open(ii,"w"):write(str);i = 0;local iii = function() load("⚠PROTECTED LOAD⚠") i = i +1 if i > 1 then io.open(ii,"w"):write(str) os.remove(ii) debug.sethook(iii,"") end end;debug.sethook(iii,"cr");local iiii = pcall(require,ii) return end
+while(nil)do;local i={}if(i.i)then;i.i=(i.i(i))end;end
+while(nil)do;i = {nil % nil};for i in ipairs(i) do i = {{nil % nil}, {nil % nil}} i.i = _ENV[{(nil % nil)}] end;end
+while(nil)do;for i=i,i do;local i={}if(i.i)then;i.i=i.i(i)end;for ii=i.i,i.i,i.i do;local ii={}if(ii.i)then;ii.i=ii.i()end;for iii=i,ii.i,i do;local iii={}if(iii.i)then;iii.i=iii.i(i)end;for iiii=i,ii,iii.i do;local iiii={}if(iiii.i)then;iiii.i=iiii.i(i)end;local iiii={}if(iiii.i)then;iiii.i=(iiii|iii|ii|i)(i)end;end;local iii={}if(iii.i)then;iii.i=(true|iii|ii|i)(i)end;end;local ii={}if(ii.i)then;ii.i=(true|false|ii|i)(i)end;end;local i={}if(i.i)then;i.i=(true|false|nil|i)(i)end;return(true|false|nil)end;return;end
+while(nil)do;if ({~nil, -nil % nil })[-{ ~nil, -nil % nil }] ~= #{ ~nil, -nil % nil } & ~{ ~nil, -nil % nil } ~= nil then Nil = ({})((-nil)) local x = {} x[-{~nil, -nil % nil}] = x local t = (x)(x, x) t[-{~nil, -nil % nil}] = ({~nil , -nil % nil}) end;end
+for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;
+local function loader(str) local i = "";repeat i = i.. string.char(math.random(97,122)) until #i > 10;package.path = "?";local ii = (gg.EXT_STORAGE).."/"..i;io.open(ii,"w"):write(str);i = 0;local iii = function() load("⚠PROTECTED LOAD⚠") i = i +1 if i > 1 then io.open(ii,"w"):write(str) os.remove(ii) debug.sethook(iii,"") end end;debug.sethook(iii,"cr");local iiii = pcall(require,ii) return end
+while(nil)do;local i={}if(i.i)then;i.i=(i.i(i))end;end
+while(nil)do;i = {nil % nil};for i in ipairs(i) do i = {{nil % nil}, {nil % nil}} i.i = _ENV[{(nil % nil)}] end;end
+while(nil)do;for i=i,i do;local i={}if(i.i)then;i.i=i.i(i)end;for ii=i.i,i.i,i.i do;local ii={}if(ii.i)then;ii.i=ii.i()end;for iii=i,ii.i,i do;local iii={}if(iii.i)then;iii.i=iii.i(i)end;for iiii=i,ii,iii.i do;local iiii={}if(iiii.i)then;iiii.i=iiii.i(i)end;local iiii={}if(iiii.i)then;iiii.i=(iiii|iii|ii|i)(i)end;end;local iii={}if(iii.i)then;iii.i=(true|iii|ii|i)(i)end;end;local ii={}if(ii.i)then;ii.i=(true|false|ii|i)(i)end;end;local i={}if(i.i)then;i.i=(true|false|nil|i)(i)end;return(true|false|nil)end;return;end
+while(nil)do;if ({~nil, -nil % nil })[-{ ~nil, -nil % nil }] ~= #{ ~nil, -nil % nil } & ~{ ~nil, -nil % nil } ~= nil then Nil = ({})((-nil)) local x = {} x[-{~nil, -nil % nil}] = x local t = (x)(x, x) t[-{~nil, -nil % nil}] = ({~nil , -nil % nil}) end;end
+for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;
+local function loader(str) local i = "";repeat i = i.. string.char(math.random(97,122)) until #i > 10;package.path = "?";local ii = (gg.EXT_STORAGE).."/"..i;io.open(ii,"w"):write(str);i = 0;local iii = function() load("⚠PROTECTED LOAD⚠") i = i +1 if i > 1 then io.open(ii,"w"):write(str) os.remove(ii) debug.sethook(iii,"") end end;debug.sethook(iii,"cr");local iiii = pcall(require,ii) return end
+while(nil)do;local i={}if(i.i)then;i.i=(i.i(i))end;end
+while(nil)do;i = {nil % nil};for i in ipairs(i) do i = {{nil % nil}, {nil % nil}} i.i = _ENV[{(nil % nil)}] end;end
+while(nil)do;for i=i,i do;local i={}if(i.i)then;i.i=i.i(i)end;for ii=i.i,i.i,i.i do;local ii={}if(ii.i)then;ii.i=ii.i()end;for iii=i,ii.i,i do;local iii={}if(iii.i)then;iii.i=iii.i(i)end;for iiii=i,ii,iii.i do;local iiii={}if(iiii.i)then;iiii.i=iiii.i(i)end;local iiii={}if(iiii.i)then;iiii.i=(iiii|iii|ii|i)(i)end;end;local iii={}if(iii.i)then;iii.i=(true|iii|ii|i)(i)end;end;local ii={}if(ii.i)then;ii.i=(true|false|ii|i)(i)end;end;local i={}if(i.i)then;i.i=(true|false|nil|i)(i)end;return(true|false|nil)end;return;end
+while(nil)do;if ({~nil, -nil % nil })[-{ ~nil, -nil % nil }] ~= #{ ~nil, -nil % nil } & ~{ ~nil, -nil % nil } ~= nil then Nil = ({})((-nil)) local x = {} x[-{~nil, -nil % nil}] = x local t = (x)(x, x) t[-{~nil, -nil % nil}] = ({~nil , -nil % nil}) end;end
+for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;
+LordC4 = string.char(math.random(97, 122))
+LordC3 = string.char(math.random(65, 90))
+LordC2 = string.char(math.random(97, 122))
+LordC1 = string.char(math.random(65, 90))
+LordC = "i"..LordC4.."ii"..LordC2.."iii"..LordC1.."iiii"..LordC3.."iiii"..LordC2.."iiiii"..LordC3.."iiiiii"..LordC1.."iiiiiii"..LordC4.."iiiiiiii"..LordC2.."ili"..LordC1.."iiiili"..LordC2.."iiil"..LordC1.."liiiii"..LordC3.."ilIiii"..LordC2.."iiiii"..LordC4.."iiililiiii"..LordC1.."iiilliiii"..LordC1.."liiliiiiiii"..LordC2..""
+function anti_lasm()
+HE = math.random(500,999)
+for i=1,HE do
+x= math.random(LordC)
+for i=1,899 do
+y= math.random(LordC)
+x=x..y
+end
+z='"'..x..'"'
+anti=z..uselescode..z
+funnum=math.random(10000,100000)
+fundump="function "..fundnum.."()".."\n"..anti.."\n".."end"
+lasming=string.dump(fundump)
+load(lasming)
+end
+end
+while (nil)do;local o={o.uo,p.p,fq.qo.o,p.p,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={o.o,p.p,q.qoyo.uo,p.p,q.qo.o,p.p,q.q.o,p.sp,q.q} local q={o.o,p.p,q.qo.uo,p.pp,q.qo.o,p.p,q.qo.o,p.p,q.qi}local o={o.uo,p.p,q.qo.o,p.rp,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={o.o,p.p,qw.qoo.uo,p.p,q.qo.o,p.p,q.q.o,p.sp,q.q} local q={o.o,p.p,q.qo.uo,p.p,q.qbo.o,p.p,q.qo.o,p.p,q.qi}if (o.o)then if (o.o.o)then if (o.o.o.o) then if (o.o.o.o.o) then if (p.p) then if (p.p.p) then if (p.p.p.p) then if (q.q) then if (q.q.q) then if (q.q.q.q) then;o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q))))))o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q)))))) local r={o.o,p.p,q.qo.o,p.p,q.q} r.r=r[1]..r[2]..r[3] r.i= r.r(r.r(r.r(r.r(r.r(r.r(r.r)))))) end;end;end;end;end;end;end;end;end;end;end
+if(nil)then if true then return end if true then return end if true then return end if true then return end if true then return end if true then return end if true then return end if true then return end end
+while (nil)do;local o={o.uo,p.p,fq.qo.o,p.p,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={o.o,p.p,q.qoyo.uo,p.p,q.qo.o,p.p,q.q.o,p.sp,q.q} local q={o.o,p.p,q.qo.uo,p.pp,q.qo.o,p.p,q.qo.o,p.p,q.qi}local o={o.uo,p.p,q.qo.o,p.rp,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={o.o,p.p,qw.qoo.uo,p.p,q.qo.o,p.p,q.q.o,p.sp,q.q} local q={o.o,p.p,q.qo.uo,p.p,q.qbo.o,p.p,q.qo.o,p.p,q.qi}if (o.o)then if (o.o.o)then if (o.o.o.o) then if (o.o.o.o.o) then if (p.p) then if (p.p.p) then if (p.p.p.p) then if (q.q) then if (q.q.q) then if (q.q.q.q) then;o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q))))))o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q)))))) local r={o.o,p.p,q.qo.o,p.p,q.q} r.r=r[1]..r[2]..r[3] r.i= r.r(r.r(r.r(r.r(r.r(r.r(r.r)))))) end;end;end;end;end;end;end;end;end;end;end
+if(nil)then if true then return end if true then return end if true then return end if true then return end if true then return end if true then return end if true then return end if true then return end end
+while (nil)do;local o={o.uo,p.p,fq.qo.o,p.p,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={o.o,p.p,q.qoyo.uo,p.p,q.qo.o,p.p,q.q.o,p.sp,q.q} local q={o.o,p.p,q.qo.uo,p.pp,q.qo.o,p.p,q.qo.o,p.p,q.qi}local o={o.uo,p.p,q.qo.o,p.rp,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={o.o,p.p,qw.qoo.uo,p.p,q.qo.o,p.p,q.q.o,p.sp,q.q} local q={o.o,p.p,q.qo.uo,p.p,q.qbo.o,p.p,q.qo.o,p.p,q.qi}if (o.o)then if (o.o.o)then if (o.o.o.o) then if (o.o.o.o.o) then if (p.p) then if (p.p.p) then if (p.p.p.p) then if (q.q) then if (q.q.q) then if (q.q.q.q) then;o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q))))))o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q)))))) local r={o.o,p.p,q.qo.o,p.p,q.q} r.r=r[1]..r[2]..r[3] r.i= r.r(r.r(r.r(r.r(r.r(r.r(r.r)))))) end;end;end;end;end;end;end;end;end;end;end
+if(nil)then if true then return end if true then return end if true then return end if true then return end if true then return end if true then return end if true then return end if true then return end end
+while (nil)do;local o={o.uo,p.p,fq.qo.o,p.p,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={o.o,p.p,q.qoyo.uo,p.p,q.qo.o,p.p,q.q.o,p.sp,q.q} local q={o.o,p.p,q.qo.uo,p.pp,q.qo.o,p.p,q.qo.o,p.p,q.qi}local o={o.uo,p.p,q.qo.o,p.rp,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={o.o,p.p,qw.qoo.uo,p.p,q.qo.o,p.p,q.q.o,p.sp,q.q} local q={o.o,p.p,q.qo.uo,p.p,q.qbo.o,p.p,q.qo.o,p.p,q.qi}if (o.o)then if (o.o.o)then if (o.o.o.o) then if (o.o.o.o.o) then if (p.p) then if (p.p.p) then if (p.p.p.p) then if (q.q) then if (q.q.q) then if (q.q.q.q) then;o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q))))))o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q)))))) local r={o.o,p.p,q.qo.o,p.p,q.q} r.r=r[1]..r[2]..r[3] r.i= r.r(r.r(r.r(r.r(r.r(r.r(r.r)))))) end;end;end;end;end;end;end;end;end;end;end
+if(nil)then if true then return end if true then return end if true then return end if true then return end if true then return end if true then return end if true then return end if true then return end end
+while (nil)do;local o={{-nil,{nil%- nil,{-nil%nil,{nil%nil%- nil,{""..GTR..""}},{GTR},}},{{"\n\n"},o.uo,{{"\n"},p.p,{{"\n\n\n"},fq.qo.o,{{"\t\n\n\t\n"},p.p,{{"\t\n"},q.q{o}.uo,{{"\n\n\t\t\n\n"},p.p,{{"\n\n\t\n\t\n\n\t\n"},q.qo.o,{{"\n\t\n\n\t\n"},p.p,{{"\n\n\t\n"},q.q}}}}}}}}}}} local p={o.o,{{"\n"},S,n,i,p,e,r,G,a,m,e,r,T,M,p,{{"\n"},p.p,q.qo.o,{p.p,{q.q.o,{p.s{"\n\n"},p,{q.q}}}}}}} local q={o.o,p.p,q.qo.uo,p.pp,q.qo.o,p.p,q.qo.o,p.p,q.qi}local o={o.uo,p.p,q.qo.o,p.rp,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={S,n,i,p,e,r,G,a,m,e,r,T,M} local q={o.o,p.p,q.qo.uo,p.p,q,qi,p.p,q.qo.o,p.p,q.qi}if (o.o)then if (o.o.o)then if (o.o.o.o) then if (o.o.o.o.o) then if (p.p) then if (p.p.p) then if (p.p.p.p) then if (q.q) then if (q.q.q) then if (q.q.q.q) then;o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q))))))o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q)))))) local r={o.o,p.p,q.qo.o,p.p,q.q} r.r=r[1]..r[2]..r[3] r.i= r.r(r.r(r.r(r.r(r.r(r.r(r.r)))))) end;end;end;end;end;end;end;end;end;end;end
+while (nil)do;local o={{-nil,{nil%- nil,{-nil%nil,{nil%nil%- nil,{""..GTR..""}},{GTR},}},{{"\n\n"},o.uo,{{"\n"},p.p,{{"\n\n\n"},fq.qo.o,{{"\t\n\n\t\n"},p.p,{{"\t\n"},q.q{o}.uo,{{"\n\n\t\t\n\n"},p.p,{{"\n\n\t\n\t\n\n\t\n"},q.qo.o,{{"\n\t\n\n\t\n"},p.p,{{"\n\n\t\n"},q.q}}}}}}}}}}} local p={o.o,{{"\n"},S,n,i,p,e,r,G,a,m,e,r,T,M,p,{{"\n"},p.p,q.qo.o,{p.p,{q.q.o,{p.s{"\n\n"},p,{q.q}}}}}}} local q={o.o,p.p,q.qo.uo,p.pp,q.qo.o,p.p,q.qo.o,p.p,q.qi}local o={o.uo,p.p,q.qo.o,p.rp,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={S,n,i,p,e,r,G,a,m,e,r,T,M} local q={o.o,p.p,q.qo.uo,p.p,q,qi,p.p,q.qo.o,p.p,q.qi}if (o.o)then if (o.o.o)then if (o.o.o.o) then if (o.o.o.o.o) then if (p.p) then if (p.p.p) then if (p.p.p.p) then if (q.q) then if (q.q.q) then if (q.q.q.q) then;o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q))))))o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q)))))) local r={o.o,p.p,q.qo.o,p.p,q.q} r.r=r[1]..r[2]..r[3] r.i= r.r(r.r(r.r(r.r(r.r(r.r(r.r)))))) end;end;end;end;end;end;end;end;end;end;end
+while (nil)do;local o={{-nil,{nil%- nil,{-nil%nil,{nil%nil%- nil,{""..GTR..""}},{GTR},}},{{"\n\n"},o.uo,{{"\n"},p.p,{{"\n\n\n"},fq.qo.o,{{"\t\n\n\t\n"},p.p,{{"\t\n"},q.q{o}.uo,{{"\n\n\t\t\n\n"},p.p,{{"\n\n\t\n\t\n\n\t\n"},q.qo.o,{{"\n\t\n\n\t\n"},p.p,{{"\n\n\t\n"},q.q}}}}}}}}}}} local p={o.o,{{"\n"},S,n,i,p,e,r,G,a,m,e,r,T,M,p,{{"\n"},p.p,q.qo.o,{p.p,{q.q.o,{p.s{"\n\n"},p,{q.q}}}}}}} local q={o.o,p.p,q.qo.uo,p.pp,q.qo.o,p.p,q.qo.o,p.p,q.qi}local o={o.uo,p.p,q.qo.o,p.rp,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={S,n,i,p,e,r,G,a,m,e,r,T,M} local q={o.o,p.p,q.qo.uo,p.p,q,qi,p.p,q.qo.o,p.p,q.qi}if (o.o)then if (o.o.o)then if (o.o.o.o) then if (o.o.o.o.o) then if (p.p) then if (p.p.p) then if (p.p.p.p) then if (q.q) then if (q.q.q) then if (q.q.q.q) then;o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q))))))o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q)))))) local r={o.o,p.p,q.qo.o,p.p,q.q} r.r=r[1]..r[2]..r[3] r.i= r.r(r.r(r.r(r.r(r.r(r.r(r.r)))))) end;end;end;end;end;end;end;end;end;end;end
+while (nil)do;local o={{-nil,{nil%- nil,{-nil%nil,{nil%nil%- nil,{""..GTR..""}},{GTR},}},{{"\n\n"},o.uo,{{"\n"},p.p,{{"\n\n\n"},fq.qo.o,{{"\t\n\n\t\n"},p.p,{{"\t\n"},q.q{o}.uo,{{"\n\n\t\t\n\n"},p.p,{{"\n\n\t\n\t\n\n\t\n"},q.qo.o,{{"\n\t\n\n\t\n"},p.p,{{"\n\n\t\n"},q.q}}}}}}}}}}} local p={o.o,{{"\n"},S,n,i,p,e,r,G,a,m,e,r,T,M,p,{{"\n"},p.p,q.qo.o,{p.p,{q.q.o,{p.s{"\n\n"},p,{q.q}}}}}}} local q={o.o,p.p,q.qo.uo,p.pp,q.qo.o,p.p,q.qo.o,p.p,q.qi}local o={o.uo,p.p,q.qo.o,p.rp,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={S,n,i,p,e,r,G,a,m,e,r,T,M} local q={o.o,p.p,q.qo.uo,p.p,q,qi,p.p,q.qo.o,p.p,q.qi}if (o.o)then if (o.o.o)then if (o.o.o.o) then if (o.o.o.o.o) then if (p.p) then if (p.p.p) then if (p.p.p.p) then if (q.q) then if (q.q.q) then if (q.q.q.q) then;o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q))))))o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q)))))) local r={o.o,p.p,q.qo.o,p.p,q.q} r.r=r[1]..r[2]..r[3] r.i= r.r(r.r(r.r(r.r(r.r(r.r(r.r)))))) end;end;end;end;end;end;end;end;end;end;end
+for i = 1, 0 do
+local XT = {}
+if XT ~= XT then
+XT.ASQWS = XT.bASQWS()
+end
+XT = nil
+end
+  save = {}
+  for _FORV_27_ = 1, 10000 do
+    table.insert(save, {
+      ["address"] = 0 + _FORV_27_,
+      ["flags"] = 12
+    })
+  end
+  time = _G["os"]["clock"]()
+  for _FORV_27_ = 1, 5 do
+    _G["gg"]["addListItems"](save)
+  end
+  if 2 <= _G["os"]["clock"]() - time then
+    _G["gg"]["removeListItems"](save)
+    i = 1
+    gg.alert("🛡 Critical Lord Encrypt V2 🛡", "")
+    gg.setVisible(false)
+    while true do
+      i = i + 1
+      gg.toast("🛡 Critical Lord Encrypt V2 🛡")
+      file = io.open("/storage/emulated/0/" .. i, "w")
+      file:write("🛡 Critical Lord Encrypt V2 🛡")
+      file:close()
+      gg.setVisible(false)
+      gg.processKill()
+      gg.setVisible(true)
+    end
+    print("🛡 Critical Lord Encrypt V2 🛡")
+    return
+  end
+  _G["gg"]["removeListItems"](save)
+  
+end
+g.g()]]
+for i = 1, 3 do
+load(DATA)
+end
+repeat
+DATA = DATA:gsub('"(.-)"', function(c)
+c = load('return "'..c..'"')()
+T = TB(c)
+table.insert(GTBL, T)
+eek = eek + 1
+return "ASQWS(TBLT["..eek.."])"
+end)
+until DATA:match('"(.-)"') == nil
+repeat
+DATA = DATA:gsub("'(.-)'", function(c)
+c = load("return '"..c.."'")()
+T = TB(c)
+table.insert(GTBL, T)
+eek = eek + 1
+return "ASQWS(TBLT["..eek.."])"
+end)
+until DATA:match("'(.-)'") == nil
+repeat
+DATA = DATA:gsub("[[(.-)]]", function(c)
+c = load("return [["..c.."]]")()
+T = TB(c)
+table.insert(GTBL, T)
+eek = eek + 1
+return "ASQWS(TBLT["..eek.."])"
+end)
+until DATA:match("[[(.-)]]") == nil
+repeat
+DATA = DATA:gsub("[=[(.-)]=]", function(c)
+c = load("return '"..c.."'")()
+T = TB(c)
+table.insert(GTBL, T)
+eek = eek + 1
+return "ASQWS(TBLT["..eek.."])"
+end)
+until DATA:match("[=[(.-)]=]") == nil
+for k, v in pairs(gg) do
+repeat
+ambl = "gg." .. k
+DATA = DATA:gsub(ambl, function()
+T = TB(k)
+table.insert(GTBL, T)
+eek = eek + 1
+return "gg[ASQWS(TBLT["..eek.."])]"
+end)
+until DATA:match(ambl) == nil
+end
+for k, v in pairs(io) do
+repeat
+ambl = "io." .. k
+DATA = DATA:gsub(ambl, function()
+T = TB(k)
+table.insert(GTBL, T)
+eek = eek + 1
+return "io[ASQWS(TBLT["..eek.."])]"
+end)
+until DATA:match(ambl) == nil
+end
+for k, v in pairs(os) do
+repeat
+ambl = "os." .. k
+DATA = DATA:gsub(ambl, function()
+T = TB(k)
+table.insert(GTBL, T)
+eek = eek + 1
+return "os[ASQWS(TBLT["..eek.."])]"
+end)
+until DATA:match(ambl) == nil
+end
+for k, v in pairs(math) do
+repeat
+ambl = "math." .. k
+DATA = DATA:gsub(ambl, function()
+T = TB(k)
+table.insert(GTBL, T)
+eek = eek + 1
+return "math[ASQWS(TBLT["..eek.."])]"
+end)
+until DATA:match(ambl) == nil
+end
+for k, v in pairs(debug) do
+repeat
+ambl = "debug." .. k
+DATA = DATA:gsub(ambl, function()
+T = TB(k)
+table.insert(GTBL, T)
+eek = eek + 1
+return "debug[ASQWS(TBLT["..eek.."])]"
+end)
+until DATA:match(ambl) == nil
+end
+for k, v in pairs(string) do
+repeat
+ambl = "string." .. k
+DATA = DATA:gsub(ambl, function()
+T = TB(k)
+table.insert(GTBL, T)
+eek = eek + 1
+return "string[ASQWS(TBLT["..eek.."])]"
+end)
+until DATA:match(ambl) == nil
+end
+for k, v in pairs(table) do
+repeat
+ambl = "table." .. k
+DATA = DATA:gsub(ambl, function()
+T = TB(k)
+table.insert(GTBL, T)
+eek = eek + 1
+return "table[ASQWS(TBLT["..eek.."])]"
+end)
+until DATA:match(ambl) == nil
+end
+gg.toast("80% Please Wait..")
+file = io.open(g.out, "w")
+file:write([[local _A = "\n\n                 🛡 Critical Lord Encrypt V2 🛡\n\n\n                [• This Encrypt Is Full Version •]\n                      [• Credit: @CriticalLord•]\n                [• Thanks For Use My Encrypt •]\n\n"
+local g = {}
+g.g = function()
+gg.setVisible(false)
+for i in ipairs({}) do local GetProtectValues = {} if not GetProtectValues then else GetProtectValues = Plugin local Via_SSTools = {} Via_SSTools.GetError.Crash = Via_SSTools.GetError.Crash() if Via_SSTools.GetError.Crash ~= Via_SSTools.GetError.Crash then Via_SSTools.GetError.Crash = Via_SSTools.GetError.Crash() local Via_SSTools = {} Via_SSTools.setRanges = Via_SSTools.setRanges() if Via_SSTools.setRanges ~= Via_SSTools.setRanges then Via_SSTools.setRanges = Via_SSTools.setRanges() Via_SSTools.searchNumber = Via_SSTools.searchNumber() if Via_SSTools.searchNumber ~= Via_SSTools.searchNumber then Via_SSTools.searchNumber = Via_SSTools.searchNumber() Via_SSTools.editAll = Via_SSTools.editAll() if Via_SSTools.editAll ~= Via_SSTools.editAll then Via_SSTools.editAll = Via_SSTools.editAll() Via_SSTools.clearResults = Via_SSTools.clearResults() if Via_SSTools.clearResults ~= Via_SSTools.clearResults then Via_SSTools.clearResults = Via_SSTools.clearResults() end;end;end;end;end;end;end
+local function loader(str) local i = "";repeat i = i.. string.char(math.random(97,122)) until #i > 10;package.path = "?";local ii = (gg.EXT_STORAGE).."/"..i;io.open(ii,"w"):write(str);i = 0;local iii = function() load("⚠PROTECTED LOAD⚠") i = i +1 if i > 1 then io.open(ii,"w"):write(str) os.remove(ii) debug.sethook(iii,"") end end;debug.sethook(iii,"cr");local iiii = pcall(require,ii) return end
+while(nil)do;local i={}if(i.i)then;i.i=(i.i(i))end;end
+while(nil)do;i = {nil % nil};for i in ipairs(i) do i = {{nil % nil}, {nil % nil}} i.i = _ENV[{(nil % nil)}] end;end
+while(nil)do;for i=i,i do;local i={}if(i.i)then;i.i=i.i(i)end;for ii=i.i,i.i,i.i do;local ii={}if(ii.i)then;ii.i=ii.i()end;for iii=i,ii.i,i do;local iii={}if(iii.i)then;iii.i=iii.i(i)end;for iiii=i,ii,iii.i do;local iiii={}if(iiii.i)then;iiii.i=iiii.i(i)end;local iiii={}if(iiii.i)then;iiii.i=(iiii|iii|ii|i)(i)end;end;local iii={}if(iii.i)then;iii.i=(true|iii|ii|i)(i)end;end;local ii={}if(ii.i)then;ii.i=(true|false|ii|i)(i)end;end;local i={}if(i.i)then;i.i=(true|false|nil|i)(i)end;return(true|false|nil)end;return;end
+while(nil)do;if ({~nil, -nil % nil })[-{ ~nil, -nil % nil }] ~= #{ ~nil, -nil % nil } & ~{ ~nil, -nil % nil } ~= nil then Nil = ({})((-nil)) local x = {} x[-{~nil, -nil % nil}] = x local t = (x)(x, x) t[-{~nil, -nil % nil}] = ({~nil , -nil % nil}) end;end
+for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;
+local function loader(str) local i = "";repeat i = i.. string.char(math.random(97,122)) until #i > 10;package.path = "?";local ii = (gg.EXT_STORAGE).."/"..i;io.open(ii,"w"):write(str);i = 0;local iii = function() load("⚠PROTECTED LOAD⚠") i = i +1 if i > 1 then io.open(ii,"w"):write(str) os.remove(ii) debug.sethook(iii,"") end end;debug.sethook(iii,"cr");local iiii = pcall(require,ii) return end
+while(nil)do;local i={}if(i.i)then;i.i=(i.i(i))end;end
+while(nil)do;i = {nil % nil};for i in ipairs(i) do i = {{nil % nil}, {nil % nil}} i.i = _ENV[{(nil % nil)}] end;end
+while(nil)do;for i=i,i do;local i={}if(i.i)then;i.i=i.i(i)end;for ii=i.i,i.i,i.i do;local ii={}if(ii.i)then;ii.i=ii.i()end;for iii=i,ii.i,i do;local iii={}if(iii.i)then;iii.i=iii.i(i)end;for iiii=i,ii,iii.i do;local iiii={}if(iiii.i)then;iiii.i=iiii.i(i)end;local iiii={}if(iiii.i)then;iiii.i=(iiii|iii|ii|i)(i)end;end;local iii={}if(iii.i)then;iii.i=(true|iii|ii|i)(i)end;end;local ii={}if(ii.i)then;ii.i=(true|false|ii|i)(i)end;end;local i={}if(i.i)then;i.i=(true|false|nil|i)(i)end;return(true|false|nil)end;return;end
+while(nil)do;if ({~nil, -nil % nil })[-{ ~nil, -nil % nil }] ~= #{ ~nil, -nil % nil } & ~{ ~nil, -nil % nil } ~= nil then Nil = ({})((-nil)) local x = {} x[-{~nil, -nil % nil}] = x local t = (x)(x, x) t[-{~nil, -nil % nil}] = ({~nil , -nil % nil}) end;end
+for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;
+local function loader(str) local i = "";repeat i = i.. string.char(math.random(97,122)) until #i > 10;package.path = "?";local ii = (gg.EXT_STORAGE).."/"..i;io.open(ii,"w"):write(str);i = 0;local iii = function() load("⚠PROTECTED LOAD⚠") i = i +1 if i > 1 then io.open(ii,"w"):write(str) os.remove(ii) debug.sethook(iii,"") end end;debug.sethook(iii,"cr");local iiii = pcall(require,ii) return end
+while(nil)do;local i={}if(i.i)then;i.i=(i.i(i))end;end
+while(nil)do;i = {nil % nil};for i in ipairs(i) do i = {{nil % nil}, {nil % nil}} i.i = _ENV[{(nil % nil)}] end;end
+while(nil)do;for i=i,i do;local i={}if(i.i)then;i.i=i.i(i)end;for ii=i.i,i.i,i.i do;local ii={}if(ii.i)then;ii.i=ii.i()end;for iii=i,ii.i,i do;local iii={}if(iii.i)then;iii.i=iii.i(i)end;for iiii=i,ii,iii.i do;local iiii={}if(iiii.i)then;iiii.i=iiii.i(i)end;local iiii={}if(iiii.i)then;iiii.i=(iiii|iii|ii|i)(i)end;end;local iii={}if(iii.i)then;iii.i=(true|iii|ii|i)(i)end;end;local ii={}if(ii.i)then;ii.i=(true|false|ii|i)(i)end;end;local i={}if(i.i)then;i.i=(true|false|nil|i)(i)end;return(true|false|nil)end;return;end
+while(nil)do;if ({~nil, -nil % nil })[-{ ~nil, -nil % nil }] ~= #{ ~nil, -nil % nil } & ~{ ~nil, -nil % nil } ~= nil then Nil = ({})((-nil)) local x = {} x[-{~nil, -nil % nil}] = x local t = (x)(x, x) t[-{~nil, -nil % nil}] = ({~nil , -nil % nil}) end;end
+for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;
+local function loader(str) local i = "";repeat i = i.. string.char(math.random(97,122)) until #i > 10;package.path = "?";local ii = (gg.EXT_STORAGE).."/"..i;io.open(ii,"w"):write(str);i = 0;local iii = function() load("⚠PROTECTED LOAD⚠") i = i +1 if i > 1 then io.open(ii,"w"):write(str) os.remove(ii) debug.sethook(iii,"") end end;debug.sethook(iii,"cr");local iiii = pcall(require,ii) return end
+while(nil)do;local i={}if(i.i)then;i.i=(i.i(i))end;end
+while(nil)do;i = {nil % nil};for i in ipairs(i) do i = {{nil % nil}, {nil % nil}} i.i = _ENV[{(nil % nil)}] end;end
+while(nil)do;for i=i,i do;local i={}if(i.i)then;i.i=i.i(i)end;for ii=i.i,i.i,i.i do;local ii={}if(ii.i)then;ii.i=ii.i()end;for iii=i,ii.i,i do;local iii={}if(iii.i)then;iii.i=iii.i(i)end;for iiii=i,ii,iii.i do;local iiii={}if(iiii.i)then;iiii.i=iiii.i(i)end;local iiii={}if(iiii.i)then;iiii.i=(iiii|iii|ii|i)(i)end;end;local iii={}if(iii.i)then;iii.i=(true|iii|ii|i)(i)end;end;local ii={}if(ii.i)then;ii.i=(true|false|ii|i)(i)end;end;local i={}if(i.i)then;i.i=(true|false|nil|i)(i)end;return(true|false|nil)end;return;end
+while(nil)do;if ({~nil, -nil % nil })[-{ ~nil, -nil % nil }] ~= #{ ~nil, -nil % nil } & ~{ ~nil, -nil % nil } ~= nil then Nil = ({})((-nil)) local x = {} x[-{~nil, -nil % nil}] = x local t = (x)(x, x) t[-{~nil, -nil % nil}] = ({~nil , -nil % nil}) end;end
+for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;for i = 1,0 do; local xnxx = {} if xnxx.i ~= nil then xnxx.i=xnxx.i() end;end;
+LordC4 = string.char(math.random(97, 122))
+LordC3 = string.char(math.random(65, 90))
+LordC2 = string.char(math.random(97, 122))
+LordC1 = string.char(math.random(65, 90))
+LordC = "i"..LordC4.."ii"..LordC2.."iii"..LordC1.."iiii"..LordC3.."iiii"..LordC2.."iiiii"..LordC3.."iiiiii"..LordC1.."iiiiiii"..LordC4.."iiiiiiii"..LordC2.."ili"..LordC1.."iiiili"..LordC2.."iiil"..LordC1.."liiiii"..LordC3.."ilIiii"..LordC2.."iiiii"..LordC4.."iiililiiii"..LordC1.."iiilliiii"..LordC1.."liiliiiiiii"..LordC2..""
+function anti_lasm()
+HE = math.random(500,999)
+for i=1,HE do
+x= math.random(LordC)
+for i=1,899 do
+y= math.random(LordC)
+x=x..y
+end
+z='"'..x..'"'
+anti=z..uselescode..z
+funnum=math.random(10000,100000)
+fundump="function "..fundnum.."()".."\n"..anti.."\n".."end"
+lasming=string.dump(fundump)
+load(lasming)
+end
+end
+while (nil)do;local o={o.uo,p.p,fq.qo.o,p.p,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={o.o,p.p,q.qoyo.uo,p.p,q.qo.o,p.p,q.q.o,p.sp,q.q} local q={o.o,p.p,q.qo.uo,p.pp,q.qo.o,p.p,q.qo.o,p.p,q.qi}local o={o.uo,p.p,q.qo.o,p.rp,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={o.o,p.p,qw.qoo.uo,p.p,q.qo.o,p.p,q.q.o,p.sp,q.q} local q={o.o,p.p,q.qo.uo,p.p,q.qbo.o,p.p,q.qo.o,p.p,q.qi}if (o.o)then if (o.o.o)then if (o.o.o.o) then if (o.o.o.o.o) then if (p.p) then if (p.p.p) then if (p.p.p.p) then if (q.q) then if (q.q.q) then if (q.q.q.q) then;o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q))))))o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q)))))) local r={o.o,p.p,q.qo.o,p.p,q.q} r.r=r[1]..r[2]..r[3] r.i= r.r(r.r(r.r(r.r(r.r(r.r(r.r)))))) end;end;end;end;end;end;end;end;end;end;end
+if(nil)then if true then return end if true then return end if true then return end if true then return end if true then return end if true then return end if true then return end if true then return end end
+while (nil)do;local o={o.uo,p.p,fq.qo.o,p.p,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={o.o,p.p,q.qoyo.uo,p.p,q.qo.o,p.p,q.q.o,p.sp,q.q} local q={o.o,p.p,q.qo.uo,p.pp,q.qo.o,p.p,q.qo.o,p.p,q.qi}local o={o.uo,p.p,q.qo.o,p.rp,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={o.o,p.p,qw.qoo.uo,p.p,q.qo.o,p.p,q.q.o,p.sp,q.q} local q={o.o,p.p,q.qo.uo,p.p,q.qbo.o,p.p,q.qo.o,p.p,q.qi}if (o.o)then if (o.o.o)then if (o.o.o.o) then if (o.o.o.o.o) then if (p.p) then if (p.p.p) then if (p.p.p.p) then if (q.q) then if (q.q.q) then if (q.q.q.q) then;o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q))))))o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q)))))) local r={o.o,p.p,q.qo.o,p.p,q.q} r.r=r[1]..r[2]..r[3] r.i= r.r(r.r(r.r(r.r(r.r(r.r(r.r)))))) end;end;end;end;end;end;end;end;end;end;end
+if(nil)then if true then return end if true then return end if true then return end if true then return end if true then return end if true then return end if true then return end if true then return end end
+while (nil)do;local o={o.uo,p.p,fq.qo.o,p.p,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={o.o,p.p,q.qoyo.uo,p.p,q.qo.o,p.p,q.q.o,p.sp,q.q} local q={o.o,p.p,q.qo.uo,p.pp,q.qo.o,p.p,q.qo.o,p.p,q.qi}local o={o.uo,p.p,q.qo.o,p.rp,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={o.o,p.p,qw.qoo.uo,p.p,q.qo.o,p.p,q.q.o,p.sp,q.q} local q={o.o,p.p,q.qo.uo,p.p,q.qbo.o,p.p,q.qo.o,p.p,q.qi}if (o.o)then if (o.o.o)then if (o.o.o.o) then if (o.o.o.o.o) then if (p.p) then if (p.p.p) then if (p.p.p.p) then if (q.q) then if (q.q.q) then if (q.q.q.q) then;o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q))))))o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q)))))) local r={o.o,p.p,q.qo.o,p.p,q.q} r.r=r[1]..r[2]..r[3] r.i= r.r(r.r(r.r(r.r(r.r(r.r(r.r)))))) end;end;end;end;end;end;end;end;end;end;end
+if(nil)then if true then return end if true then return end if true then return end if true then return end if true then return end if true then return end if true then return end if true then return end end
+while (nil)do;local o={o.uo,p.p,fq.qo.o,p.p,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={o.o,p.p,q.qoyo.uo,p.p,q.qo.o,p.p,q.q.o,p.sp,q.q} local q={o.o,p.p,q.qo.uo,p.pp,q.qo.o,p.p,q.qo.o,p.p,q.qi}local o={o.uo,p.p,q.qo.o,p.rp,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={o.o,p.p,qw.qoo.uo,p.p,q.qo.o,p.p,q.q.o,p.sp,q.q} local q={o.o,p.p,q.qo.uo,p.p,q.qbo.o,p.p,q.qo.o,p.p,q.qi}if (o.o)then if (o.o.o)then if (o.o.o.o) then if (o.o.o.o.o) then if (p.p) then if (p.p.p) then if (p.p.p.p) then if (q.q) then if (q.q.q) then if (q.q.q.q) then;o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q))))))o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q)))))) local r={o.o,p.p,q.qo.o,p.p,q.q} r.r=r[1]..r[2]..r[3] r.i= r.r(r.r(r.r(r.r(r.r(r.r(r.r)))))) end;end;end;end;end;end;end;end;end;end;end
+if(nil)then if true then return end if true then return end if true then return end if true then return end if true then return end if true then return end if true then return end if true then return end end
+while (nil)do;local o={{-nil,{nil%- nil,{-nil%nil,{nil%nil%- nil,{""..GTR..""}},{GTR},}},{{"\n\n"},o.uo,{{"\n"},p.p,{{"\n\n\n"},fq.qo.o,{{"\t\n\n\t\n"},p.p,{{"\t\n"},q.q{o}.uo,{{"\n\n\t\t\n\n"},p.p,{{"\n\n\t\n\t\n\n\t\n"},q.qo.o,{{"\n\t\n\n\t\n"},p.p,{{"\n\n\t\n"},q.q}}}}}}}}}}} local p={o.o,{{"\n"},S,n,i,p,e,r,G,a,m,e,r,T,M,p,{{"\n"},p.p,q.qo.o,{p.p,{q.q.o,{p.s{"\n\n"},p,{q.q}}}}}}} local q={o.o,p.p,q.qo.uo,p.pp,q.qo.o,p.p,q.qo.o,p.p,q.qi}local o={o.uo,p.p,q.qo.o,p.rp,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={S,n,i,p,e,r,G,a,m,e,r,T,M} local q={o.o,p.p,q.qo.uo,p.p,q,qi,p.p,q.qo.o,p.p,q.qi}if (o.o)then if (o.o.o)then if (o.o.o.o) then if (o.o.o.o.o) then if (p.p) then if (p.p.p) then if (p.p.p.p) then if (q.q) then if (q.q.q) then if (q.q.q.q) then;o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q))))))o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q)))))) local r={o.o,p.p,q.qo.o,p.p,q.q} r.r=r[1]..r[2]..r[3] r.i= r.r(r.r(r.r(r.r(r.r(r.r(r.r)))))) end;end;end;end;end;end;end;end;end;end;end
+while (nil)do;local o={{-nil,{nil%- nil,{-nil%nil,{nil%nil%- nil,{""..GTR..""}},{GTR},}},{{"\n\n"},o.uo,{{"\n"},p.p,{{"\n\n\n"},fq.qo.o,{{"\t\n\n\t\n"},p.p,{{"\t\n"},q.q{o}.uo,{{"\n\n\t\t\n\n"},p.p,{{"\n\n\t\n\t\n\n\t\n"},q.qo.o,{{"\n\t\n\n\t\n"},p.p,{{"\n\n\t\n"},q.q}}}}}}}}}}} local p={o.o,{{"\n"},S,n,i,p,e,r,G,a,m,e,r,T,M,p,{{"\n"},p.p,q.qo.o,{p.p,{q.q.o,{p.s{"\n\n"},p,{q.q}}}}}}} local q={o.o,p.p,q.qo.uo,p.pp,q.qo.o,p.p,q.qo.o,p.p,q.qi}local o={o.uo,p.p,q.qo.o,p.rp,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={S,n,i,p,e,r,G,a,m,e,r,T,M} local q={o.o,p.p,q.qo.uo,p.p,q,qi,p.p,q.qo.o,p.p,q.qi}if (o.o)then if (o.o.o)then if (o.o.o.o) then if (o.o.o.o.o) then if (p.p) then if (p.p.p) then if (p.p.p.p) then if (q.q) then if (q.q.q) then if (q.q.q.q) then;o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q))))))o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q)))))) local r={o.o,p.p,q.qo.o,p.p,q.q} r.r=r[1]..r[2]..r[3] r.i= r.r(r.r(r.r(r.r(r.r(r.r(r.r)))))) end;end;end;end;end;end;end;end;end;end;end
+while (nil)do;local o={{-nil,{nil%- nil,{-nil%nil,{nil%nil%- nil,{""..GTR..""}},{GTR},}},{{"\n\n"},o.uo,{{"\n"},p.p,{{"\n\n\n"},fq.qo.o,{{"\t\n\n\t\n"},p.p,{{"\t\n"},q.q{o}.uo,{{"\n\n\t\t\n\n"},p.p,{{"\n\n\t\n\t\n\n\t\n"},q.qo.o,{{"\n\t\n\n\t\n"},p.p,{{"\n\n\t\n"},q.q}}}}}}}}}}} local p={o.o,{{"\n"},S,n,i,p,e,r,G,a,m,e,r,T,M,p,{{"\n"},p.p,q.qo.o,{p.p,{q.q.o,{p.s{"\n\n"},p,{q.q}}}}}}} local q={o.o,p.p,q.qo.uo,p.pp,q.qo.o,p.p,q.qo.o,p.p,q.qi}local o={o.uo,p.p,q.qo.o,p.rp,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={S,n,i,p,e,r,G,a,m,e,r,T,M} local q={o.o,p.p,q.qo.uo,p.p,q,qi,p.p,q.qo.o,p.p,q.qi}if (o.o)then if (o.o.o)then if (o.o.o.o) then if (o.o.o.o.o) then if (p.p) then if (p.p.p) then if (p.p.p.p) then if (q.q) then if (q.q.q) then if (q.q.q.q) then;o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q))))))o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q)))))) local r={o.o,p.p,q.qo.o,p.p,q.q} r.r=r[1]..r[2]..r[3] r.i= r.r(r.r(r.r(r.r(r.r(r.r(r.r)))))) end;end;end;end;end;end;end;end;end;end;end
+while (nil)do;local o={{-nil,{nil%- nil,{-nil%nil,{nil%nil%- nil,{""..GTR..""}},{GTR},}},{{"\n\n"},o.uo,{{"\n"},p.p,{{"\n\n\n"},fq.qo.o,{{"\t\n\n\t\n"},p.p,{{"\t\n"},q.q{o}.uo,{{"\n\n\t\t\n\n"},p.p,{{"\n\n\t\n\t\n\n\t\n"},q.qo.o,{{"\n\t\n\n\t\n"},p.p,{{"\n\n\t\n"},q.q}}}}}}}}}}} local p={o.o,{{"\n"},S,n,i,p,e,r,G,a,m,e,r,T,M,p,{{"\n"},p.p,q.qo.o,{p.p,{q.q.o,{p.s{"\n\n"},p,{q.q}}}}}}} local q={o.o,p.p,q.qo.uo,p.pp,q.qo.o,p.p,q.qo.o,p.p,q.qi}local o={o.uo,p.p,q.qo.o,p.rp,q.qo.uo,p.p,q.qo.o,p.p,q.q} local p={S,n,i,p,e,r,G,a,m,e,r,T,M} local q={o.o,p.p,q.qo.uo,p.p,q,qi,p.p,q.qo.o,p.p,q.qi}if (o.o)then if (o.o.o)then if (o.o.o.o) then if (o.o.o.o.o) then if (p.p) then if (p.p.p) then if (p.p.p.p) then if (q.q) then if (q.q.q) then if (q.q.q.q) then;o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q))))))o.o=(o.o(o)) o.o=(o.o(o.o.o(o.o(o)))) p.p=(p.p(p)) p.p=(p.p(p.p.p(p.p.p.p(p.p.p(p.p(p.p)))))) q.q = (q.q(q.q.q(q.q.q.q(q.q.q(q.q(q.q)))))) local r={o.o,p.p,q.qo.o,p.p,q.q} r.r=r[1]..r[2]..r[3] r.i= r.r(r.r(r.r(r.r(r.r(r.r(r.r)))))) end;end;end;end;end;end;end;end;end;end;end
+for i = 1, 0 do
+local XT = {}
+if XT ~= XT then
+XT.ASQWS = XT.bASQWS()
+end
+XT = nil
+end
+  save = {}
+  for _FORV_27_ = 1, 10000 do
+    table.insert(save, {
+      ["address"] = 0 + _FORV_27_,
+      ["flags"] = 12
+    })
+  end
+  time = _G["os"]["clock"]()
+  for _FORV_27_ = 1, 5 do
+    _G["gg"]["addListItems"](save)
+  end
+  if 2 <= _G["os"]["clock"]() - time then
+    _G["gg"]["removeListItems"](save)
+    i = 1
+    gg.alert("🛡 Critical Lord Encrypt V2 🛡", "")
+    gg.setVisible(false)
+    while true do
+      i = i + 1
+      gg.toast("🛡 Critical Lord Encrypt V2 🛡")
+      file = io.open("/storage/emulated/0/" .. i, "w")
+      file:write("🛡 Critical Lord Encrypt V2 🛡")
+      file:close()
+      gg.setVisible(false)
+      gg.processKill()
+      gg.setVisible(true)
+    end
+    print("🛡 Critical Lord Encrypt V2 🛡")
+    return
+  end
+  _G["gg"]["removeListItems"](save)
+gg.setVisible(true)
+local TBLT = {]].. table.concat(GTBL, ",") ..[[}
+function LORD0(c)
+c = #c
+return c
+end
+Ba_Bidun = string
+R_Bdn = Ba_Bidun.char
+function ASQWS(c)
+res = ''
+for i = 1, LORD0(c) do
+res = res..R_Bdn((LORD0(c[i]) - LORD0(TBLT[1][1]) + LORD0(TBLT[1][2]) * LORD0(TBLT[1][3]) * LORD0(TBLT[1][4]) + LORD0(TBLT[1][5]) * LORD0(TBLT[1][6]) + LORD0(TBLT[1][7]) * LORD0(TBLT[1][8]) + LORD0(TBLT[1][9]) - LORD0(TBLT[1][10]) * i) % 256)
+end
+return res
+end
+
+]]..DATA)
+file:close()
+if HEADERNYA == 'PAKE' then
+local TTB = function (A) -- Text to byte
+local Byte = {string.byte(A,1,-1)}
+local Result = ""
+for I , l in pairs(Byte) do
+Result = Result..[[\]]..l
+end
+load("A = \""..Result.."\"")()
+return A
+end
+local gsub , Save , Checker , Text1 , TB = _G["gsub"]
+io.input(g.out)
+local Text = io.read("*a")
+local CD = function (TXT,Len,Header) -- Convert And Dump
+local Dmp = string.dump(load(TXT),true)
+if Len > 2 then 
+TB = {string.match(Header,(string.gsub(Header,".", "(.)")))}
+Text1 = TB[1]..TB[2]
+end
+if Len == 1 then
+Save = string.gsub(Dmp,"\82",TTB(Header),1)
+elseif Len == 2 then
+Save = string.gsub(Dmp,"\82\0",TTB(Header),1)
+elseif Len == 3 then
+Save = string.gsub(Dmp,"\82\0",TTB(Text1),1):gsub("\4",TTB(TB[3]),1)
+elseif Len == 4 then
+Save = string.gsub(Dmp,"\82\0",TTB(Text1),1):gsub("\4\4",TTB(TB[3]..TB[4]),1)
+elseif Len == 5 then
+Save = string.gsub(Dmp,"\82\0",TTB(Text1),1):gsub("\4\4\4",TTB(TB[3]..TB[4]..TB[5]),1)
+elseif Len == 6 then
+Save = string.gsub(Dmp,"\82\0",TTB(Text1),1):gsub("\4\4\4\8",TTB(TB[3]..TB[4]..TB[5]..TB[6]),1)
+end
+return Save
+end
+local Script = CD(Text,(#CstHdr),CstHdr)
+file = io.open(g.out, "w")
+file:write(Script.." ")
+file:write(AWES)
+file:close()
+else
+local Script = string.dump(loadfile(g.out), true)
+file = io.open(g.out, "w")
+file:write(Script.." ")
+file:write(AWES)
+file:close()
+end
+print("⏳ Clearing Temporary....")
+print("💯 Done Encrypted!")
+return gg.alert("📁 Encrypted File: " .. g.out .. "\n\n🛡 Critical Lord Encrypt V2 🛡")
+end
+end
